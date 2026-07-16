@@ -15,9 +15,9 @@ const PROJECT_KEYS = [
     nameKey: "portfolio.scholarifyName",
     descKey: "portfolio.scholarifyDesc",
     stack: "Next.js",
-    url: "https://scholarify-academy.vercel.app/",
+    url: "https://scholarify.id/",
     repoUrl: "https://github.com/ZayeenJavas313/Company-Profile---Scholarify-Academy/tree/main/landing-page",
-    tags: ["Company Profile", "SNBT Tryout", "Data Analysis"],
+    tags: ["Company Profile", "SNBT Tryout", "Data Analysis", "CMD"],
   },
 ];
 
