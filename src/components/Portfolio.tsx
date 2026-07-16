@@ -4,20 +4,20 @@ import { useTranslation } from "@/providers/language-provider";
 
 const PROJECT_KEYS = [
   {
-    nameKey: "portfolio.airaName",
-    descKey: "portfolio.airaDesc",
-    stack: "React",
-    url: "https://aira-dry-cleaning.vercel.app/",
-    repoUrl: "https://github.com/ZayeenJavas313/Aira-Dry-Cleaning",
-    tags: ["Company Profile", "Landing Page", "System CRUD", "Payment Gateway"],
-  },
-  {
     nameKey: "portfolio.scholarifyName",
     descKey: "portfolio.scholarifyDesc",
     stack: "Next.js",
     url: "https://scholarify.id/",
     repoUrl: "https://github.com/ZayeenJavas313/Company-Profile---Scholarify-Academy/tree/main/landing-page",
     tags: ["Company Profile", "SNBT Tryout", "Data Analysis", "CMD"],
+  },
+  {
+    nameKey: "portfolio.airaName",
+    descKey: "portfolio.airaDesc",
+    stack: "React",
+    url: "https://aira-dry-cleaning.vercel.app/",
+    repoUrl: "https://github.com/ZayeenJavas313/Aira-Dry-Cleaning",
+    tags: ["Company Profile", "Landing Page", "System CRUD", "Payment Gateway"],
   },
 ];
 
