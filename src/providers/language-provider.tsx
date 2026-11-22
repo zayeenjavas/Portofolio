@@ -28,7 +28,7 @@ function resolvePath(obj: Record<string, unknown>, path: string): string {
 }
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>("id");
+  const [language, setLanguage] = useState<Language>("en");
 
   const t = (path: string) =>
     resolvePath(dictionaries[language] as unknown as Record<string, unknown>, path);
