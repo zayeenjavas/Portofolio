@@ -10,7 +10,7 @@ const TESTIMONIALS = [
   },
   {
     text: "Professional, reliable, and detail-oriented. Delivered the Scholarify project on time with zero issues. The platform handles thousands of users smoothly.",
-    name: "Rizky Hidayat",
+    name: "M. Maldini",
     role: "Founder, Scholarify Academy",
   },
   {
