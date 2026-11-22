@@ -1,19 +1,16 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { Button, buttonVariants } from "@/components/ui/button";
 import { MenuToggleIcon } from "@/components/ui/menu-toggle-icon";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { LanguageToggle } from "@/components/ui/language-toggle";
-import { useScroll } from "@/hooks/use-scroll";
 import { useTranslation } from "@/providers/language-provider";
 import { cn } from "@/lib/utils";
 
 const NAV_KEYS = [
-  { key: "home", href: "#home" },
-  { key: "about", href: "#about" },
+  { key: "work", href: "#work" },
   { key: "services", href: "#services" },
   { key: "pricing", href: "#pricing" },
-  { key: "work", href: "#work" },
+  { key: "about", href: "#about" },
   { key: "contact", href: "#contact" },
 ] as const;
 
@@ -22,7 +19,6 @@ const WHATSAPP_URL =
 
 export function Header() {
   const [open, setOpen] = useState(false);
-  const scrolled = useScroll(10);
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -33,72 +29,73 @@ export function Header() {
   }, [open]);
 
   return (
-    <header
-      className={cn("sticky top-0 z-50 w-full border-b border-transparent", {
-        "bg-background/95 supports-[backdrop-filter]:bg-background/50 border-border backdrop-blur-lg":
-          scrolled,
-      })}
-    >
-      <nav className="mx-auto flex h-14 w-full max-w-5xl items-center justify-between px-4">
-        <a href="#home" className="hover:bg-accent rounded-md p-2">
-          <Wordmark className="h-4" />
+    <header className="sticky top-0 z-40 h-[73px] w-full border-b border-[var(--line)] bg-[var(--bg)]/92 backdrop-blur-md">
+      <div className="rail-container flex h-full items-center justify-between px-5 md:px-8">
+        <a
+          href="#home"
+          className="flex size-9 items-center justify-center border border-[var(--line)] bg-[var(--panel)] font-mono text-sm font-bold tracking-tighter text-[var(--fg)] transition-colors hover:border-[var(--fg)]"
+          aria-label="Ahmad Na'im Home"
+        >
+          AN
         </a>
-        <div className="hidden items-center gap-2 md:flex">
+
+        <nav className="hidden items-center gap-6 md:flex">
           {NAV_KEYS.map((link) => (
             <a
               key={link.key}
-              className={buttonVariants({ variant: "ghost" })}
               href={link.href}
+              className="text-xs font-medium uppercase tracking-[0.12em] text-[var(--mut)] transition-colors hover:text-[var(--fg)]"
             >
               {t(`nav.${link.key}`)}
             </a>
           ))}
-          <LanguageToggle />
-          <ThemeToggle />
-          <Button asChild>
-            <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
-              {t("nav.letsTalk")}
-            </a>
-          </Button>
-        </div>
+          <div className="flex items-center gap-2 border-l border-[var(--line)] pl-4">
+            <LanguageToggle />
+            <ThemeToggle />
+          </div>
+        </nav>
+
         <div className="flex items-center gap-2 md:hidden">
           <LanguageToggle />
           <ThemeToggle />
-          <Button
-            size="icon"
-            variant="outline"
+          <button
+            type="button"
             onClick={() => setOpen(!open)}
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label="Toggle menu"
+            className="flex size-8 cursor-pointer items-center justify-center border border-[var(--line)] bg-[var(--panel)] text-[var(--fg)]"
           >
-            <MenuToggleIcon open={open} className="size-5" duration={300} />
-          </Button>
+            <MenuToggleIcon open={open} className="size-4" duration={300} />
+          </button>
         </div>
-      </nav>
+      </div>
+
       <MobileMenu open={open}>
-        <div className="grid gap-y-2">
-          {NAV_KEYS.map((link) => (
+        <div className="flex flex-col divide-y divide-[var(--line)] border border-[var(--line)] bg-[var(--panel)]">
+          {NAV_KEYS.map((link, idx) => (
             <a
               key={link.key}
-              className={buttonVariants({
-                variant: "ghost",
-                className: "justify-start",
-              })}
               href={link.href}
               onClick={() => setOpen(false)}
+              className="flex items-center justify-between px-5 py-4 text-sm font-medium uppercase tracking-[0.12em] text-[var(--fg)] transition-colors hover:bg-[var(--bg)]"
             >
-              {t(`nav.${link.key}`)}
+              <span>{t(`nav.${link.key}`)}</span>
+              <span className="font-mono text-xs text-[var(--mut)]">
+                0{idx + 1}
+              </span>
             </a>
           ))}
         </div>
-        <div className="flex flex-col gap-2">
-          <Button className="w-full" asChild>
-            <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
-              {t("nav.letsTalk")}
-            </a>
-          </Button>
-        </div>
+        <a
+          href={WHATSAPP_URL}
+          target="_blank"
+          rel="noreferrer"
+          onClick={() => setOpen(false)}
+          className="chamfer-btn flex w-full items-center justify-center bg-[var(--fg)] px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.14em] text-[var(--bg)]"
+        >
+          {t("nav.letsTalk")} →
+        </a>
       </MobileMenu>
     </header>
   );
@@ -115,32 +112,11 @@ function MobileMenu({ open, children }: MobileMenuProps) {
     <div
       id="mobile-menu"
       className={cn(
-        "bg-background/95 supports-[backdrop-filter]:bg-background/50 backdrop-blur-lg",
-        "fixed top-14 right-0 bottom-0 left-0 z-40 flex flex-col overflow-hidden border-y md:hidden"
+        "fixed inset-x-0 top-[73px] bottom-0 z-30 flex flex-col justify-between bg-[var(--bg)]/98 p-6 backdrop-blur-md md:hidden"
       )}
     >
-      <div className="size-full p-4 flex flex-col justify-between gap-2 animate-(--animate-zoom-in-97)">
-        {children}
-      </div>
+      {children}
     </div>,
     document.body
   );
 }
-
-function Wordmark(props: React.ComponentProps<"svg">) {
-  return (
-    <svg viewBox="0 0 140 20" fill="currentColor" {...props}>
-      <text
-        x="0"
-        y="15"
-        fontFamily="Inter, sans-serif"
-        fontSize="16"
-        fontWeight="900"
-        letterSpacing="-0.05em"
-      >
-        Ahmad Na&apos;im
-      </text>
-    </svg>
-  );
-}
-

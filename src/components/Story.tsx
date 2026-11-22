@@ -1,45 +1,50 @@
-import TextBlockAnimation from "@/components/ui/text-block-animation";
+import { ArrowUpRightIcon } from "lucide-react";
+import { SectionHeader } from "@/components/ui/section-divider";
 import { useTranslation } from "@/providers/language-provider";
+
+const WHATSAPP_URL =
+  "https://wa.me/6287841549562?text=Halo%20Ahmad%2C%20saya%20ingin%20diskusi%20project.";
 
 export function Story() {
   const { t } = useTranslation();
 
   return (
-    <section id="about" className="relative w-full bg-background text-foreground">
-      <div className="min-h-screen flex flex-col items-center justify-center px-6 py-24">
-        <div className="max-w-4xl w-full">
-          <TextBlockAnimation blockColor="#6366f1" animateOnScroll duration={0.8}>
-            <h2 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-tight">
-              {t("story.titleLine1")}
-              <br />
-              <span className="inline-block bg-foreground text-background px-3 pb-1 rounded-md mt-2">
-                {t("story.titleLine2")}
-              </span>
-            </h2>
-          </TextBlockAnimation>
-        </div>
-      </div>
+    <section id="about" className="w-full">
+      <div className="rail-container">
+        <SectionHeader
+          title={t("story.title")}
+          indexLabel={t("story.index")}
+        />
 
-      <div className="min-h-[80vh] flex flex-col justify-center items-center px-6 py-24 bg-muted/40">
-        <div className="max-w-3xl w-full space-y-16">
-          <TextBlockAnimation blockColor="#10b981" duration={0.7}>
-            <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold">
-              {t("story.whatIDo")}
-            </h3>
-          </TextBlockAnimation>
+        <div className="px-5 py-10 md:px-8 md:py-12">
+          <div className="mb-4 font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--mut)]">
+            {t("story.greetings")}
+          </div>
 
-          <TextBlockAnimation blockColor="#f59e0b" stagger={0.03}>
-            <p className="text-base sm:text-lg md:text-2xl leading-relaxed text-foreground/80">
-              {t("story.paragraph")}
-            </p>
-          </TextBlockAnimation>
+          <h3 className="text-3xl font-bold leading-[1.1] tracking-[-0.03em] sm:text-4xl md:text-[46px]">
+            <span className="text-[var(--fg)]">{t("story.headline1")} </span>
+            <span className="text-[var(--mut)]">{t("story.headline2")}</span>
+          </h3>
 
-          <div className="pl-6 border-l-2 border-indigo-500">
-            <TextBlockAnimation blockColor="#8b5cf6" duration={0.6}>
-              <p className="text-base md:text-lg italic text-muted-foreground">
+          <div className="mt-10 flex flex-col gap-8 border-t border-[var(--line)] pt-8 md:flex-row md:items-end md:justify-between">
+            <div className="max-w-xl space-y-4">
+              <p className="text-sm leading-relaxed text-[var(--mut)] md:text-base">
+                {t("story.paragraph")}
+              </p>
+              <p className="border-l-2 border-[var(--alert)] pl-4 font-mono text-xs italic text-[var(--fg)]/80 md:text-sm">
                 {t("story.quote")}
               </p>
-            </TextBlockAnimation>
+            </div>
+
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="chamfer-btn inline-flex shrink-0 items-center gap-2 self-start bg-[var(--fg)] px-6 py-3 text-xs font-semibold uppercase tracking-[0.12em] text-[var(--bg)] transition-opacity hover:opacity-85 md:self-end"
+            >
+              <span>{t("story.cta")}</span>
+              <ArrowUpRightIcon className="size-4" />
+            </a>
           </div>
         </div>
       </div>

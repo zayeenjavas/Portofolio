@@ -5,25 +5,27 @@ export function LanguageToggle() {
   const { language, setLanguage } = useTranslation();
 
   return (
-    <div className="flex items-center gap-0.5 border rounded-md overflow-hidden shrink-0">
+    <div className="flex shrink-0 items-center border border-[var(--line)] bg-[var(--panel)]">
       <button
+        type="button"
         onClick={() => setLanguage("id")}
         className={cn(
-          "px-2 py-1 text-xs font-medium transition-colors cursor-pointer",
+          "cursor-pointer px-2.5 py-1.5 font-mono text-[11px] font-semibold tracking-wider transition-colors",
           language === "id"
-            ? "bg-primary text-primary-foreground"
-            : "text-muted-foreground hover:text-foreground"
+            ? "bg-[var(--fg)] text-[var(--bg)]"
+            : "text-[var(--mut)] hover:text-[var(--fg)]"
         )}
       >
         ID
       </button>
       <button
+        type="button"
         onClick={() => setLanguage("en")}
         className={cn(
-          "px-2 py-1 text-xs font-medium transition-colors cursor-pointer",
+          "cursor-pointer border-l border-[var(--line)] px-2.5 py-1.5 font-mono text-[11px] font-semibold tracking-wider transition-colors",
           language === "en"
-            ? "bg-primary text-primary-foreground"
-            : "text-muted-foreground hover:text-foreground"
+            ? "bg-[var(--fg)] text-[var(--bg)]"
+            : "text-[var(--mut)] hover:text-[var(--fg)]"
         )}
       >
         EN
