@@ -21,7 +21,7 @@ export function SectionHeader({
   showCrosshair = false,
 }: SectionHeaderProps) {
   return (
-    <div className="relative flex flex-wrap items-center justify-between gap-3 border-b border-[var(--line)] px-5 py-6 md:px-8">
+    <div className="relative flex flex-wrap items-center justify-between gap-3 border-b border-[var(--line)] px-5 py-5 md:px-8 md:py-6">
       {showCrosshair && (
         <span
           aria-hidden="true"

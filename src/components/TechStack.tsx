@@ -22,12 +22,12 @@ export function TechStack() {
           {STACK_ROWS.map((row) => (
             <div
               key={row.labelKey}
-              className="grid grid-cols-1 gap-2 px-5 py-4 md:grid-cols-12 md:items-center md:px-8"
+              className="grid grid-cols-[6rem_1fr] items-baseline gap-x-3 px-5 py-4 md:grid-cols-12 md:items-center md:px-8"
             >
-              <div className="font-mono text-xs uppercase tracking-[0.14em] text-[var(--mut)] md:col-span-4">
+              <div className="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--mut)] md:col-span-4 md:text-xs">
                 {t(row.labelKey)}
               </div>
-              <div className="text-sm font-medium text-[var(--fg)] md:col-span-8">
+              <div className="font-mono text-[13px] leading-relaxed text-[var(--fg)] md:col-span-8 md:font-sans md:text-sm md:font-medium">
                 {t(row.valueKey)}
               </div>
             </div>

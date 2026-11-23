@@ -161,12 +161,12 @@ export function Portfolio() {
             >
               <div>
                 {/* Blueprint Wireframe Header */}
-                <div className="blueprint-grid h-36 w-full border-b border-[var(--line)] bg-[var(--panel)]/60 p-3">
+                <div className="blueprint-grid h-[120px] w-full border-b border-[var(--line)] bg-[var(--panel)]/60 p-3 sm:h-36">
                   <WireframeIllustration id={project.id} />
                 </div>
 
                 {/* Card Body */}
-                <div className="space-y-3 p-5 md:p-6">
+                <div className="space-y-2.5 px-5 py-4 md:p-6">
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <h3 className="text-lg font-semibold tracking-tight text-[var(--fg)]">
                       {t(project.nameKey)}

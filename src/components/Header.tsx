@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import { XIcon } from "lucide-react";
 import { MenuToggleIcon } from "@/components/ui/menu-toggle-icon";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { LanguageToggle } from "@/components/ui/language-toggle";
 import { useTranslation } from "@/providers/language-provider";
-import { cn } from "@/lib/utils";
 
 const NAV_KEYS = [
   { key: "work", href: "#work" },
@@ -30,10 +30,10 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-40 h-[73px] w-full border-b border-[var(--line)] bg-[var(--bg)]/92 backdrop-blur-md">
-      <div className="rail-container flex h-full items-center justify-between px-5 md:px-8">
+      <div className="rail-container flex h-full items-center justify-between px-4 md:px-8">
         <a
           href="#home"
-          className="flex size-9 items-center justify-center border border-[var(--line)] bg-[var(--panel)] font-mono text-sm font-bold tracking-tighter text-[var(--fg)] transition-colors hover:border-[var(--fg)]"
+          className="flex size-10 items-center justify-center border border-[var(--fg)] bg-[var(--panel)] font-mono text-base font-bold tracking-tighter text-[var(--fg)] transition-colors hover:bg-[var(--fg)] hover:text-[var(--bg)]"
           aria-label="Ahmad Na'im Home"
         >
           AN
@@ -63,7 +63,7 @@ export function Header() {
             onClick={() => setOpen(!open)}
             aria-expanded={open}
             aria-controls="mobile-menu"
-            aria-label="Toggle menu"
+            aria-label="Open menu"
             className="flex size-8 cursor-pointer items-center justify-center border border-[var(--line)] bg-[var(--panel)] text-[var(--fg)]"
           >
             <MenuToggleIcon open={open} className="size-4" duration={300} />
@@ -71,51 +71,68 @@ export function Header() {
         </div>
       </div>
 
-      <MobileMenu open={open}>
-        <div className="flex flex-col divide-y divide-[var(--line)] border border-[var(--line)] bg-[var(--panel)]">
-          {NAV_KEYS.map((link, idx) => (
+      <MobileDrawer open={open} onClose={() => setOpen(false)}>
+        <div className="flex h-14 items-center justify-between border-b border-[var(--line)] px-5">
+          <span className="font-mono text-xs uppercase tracking-[0.14em] text-[var(--mut)]">
+            MENU
+          </span>
+          <button
+            type="button"
+            onClick={() => setOpen(false)}
+            aria-label="Close menu"
+            className="flex size-8 cursor-pointer items-center justify-center text-[var(--mut)] hover:text-[var(--fg)]"
+          >
+            <XIcon className="size-4" />
+          </button>
+        </div>
+
+        <div className="flex flex-1 flex-col">
+          {NAV_KEYS.map((link) => (
             <a
               key={link.key}
               href={link.href}
               onClick={() => setOpen(false)}
-              className="flex items-center justify-between px-5 py-4 text-sm font-medium uppercase tracking-[0.12em] text-[var(--fg)] transition-colors hover:bg-[var(--bg)]"
+              className="flex h-10 items-center justify-between border-b border-[var(--line)] px-5 font-mono text-xs uppercase tracking-[0.06em] text-[var(--fg)] transition-colors hover:bg-[var(--panel)]"
             >
               <span>{t(`nav.${link.key}`)}</span>
-              <span className="font-mono text-xs text-[var(--mut)]">
-                0{idx + 1}
-              </span>
             </a>
           ))}
         </div>
-        <a
-          href={WHATSAPP_URL}
-          target="_blank"
-          rel="noreferrer"
-          onClick={() => setOpen(false)}
-          className="chamfer-btn flex w-full items-center justify-center bg-[var(--fg)] px-6 py-3.5 text-xs font-semibold uppercase tracking-[0.14em] text-[var(--bg)]"
-        >
-          {t("nav.letsTalk")} →
-        </a>
-      </MobileMenu>
+
+        <div className="border-t border-[var(--line)] p-5">
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noreferrer"
+            onClick={() => setOpen(false)}
+            className="chamfer-btn flex w-full items-center justify-center bg-[var(--fg)] px-5 py-3 font-mono text-xs font-semibold uppercase tracking-[0.12em] text-[var(--bg)]"
+          >
+            {t("nav.letsTalk")} →
+          </a>
+        </div>
+      </MobileDrawer>
     </header>
   );
 }
 
-type MobileMenuProps = {
+type MobileDrawerProps = {
   open: boolean;
+  onClose: () => void;
   children: React.ReactNode;
 };
 
-function MobileMenu({ open, children }: MobileMenuProps) {
+function MobileDrawer({ open, onClose, children }: MobileDrawerProps) {
   if (!open || typeof window === "undefined") return null;
   return createPortal(
-    <div
-      id="mobile-menu"
-      className={cn(
-        "fixed inset-x-0 top-[73px] bottom-0 z-30 flex flex-col justify-between bg-[var(--bg)]/98 p-6 backdrop-blur-md md:hidden"
-      )}
-    >
-      {children}
+    <div className="fixed inset-0 z-50 md:hidden" role="dialog" aria-modal="true" id="mobile-menu">
+      <div
+        aria-hidden="true"
+        onClick={onClose}
+        className="fixed inset-0 bg-black/60 backdrop-blur-[2px]"
+      />
+      <div className="fixed inset-y-0 right-0 flex w-3/4 max-w-xs flex-col border-l border-[var(--line)] bg-[var(--bg)] shadow-2xl">
+        {children}
+      </div>
     </div>,
     document.body
   );

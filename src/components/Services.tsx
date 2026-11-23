@@ -29,7 +29,7 @@ export function Services() {
           {SERVICE_KEYS.map((item, idx) => (
             <div
               key={item.titleKey}
-              className="grid grid-cols-1 gap-2 px-5 py-5 transition-colors hover:bg-[var(--panel)] md:grid-cols-12 md:items-center md:gap-6 md:px-8"
+              className="grid grid-cols-1 gap-1.5 px-5 py-4 transition-colors hover:bg-[var(--panel)] md:grid-cols-12 md:items-center md:gap-6 md:px-8 md:py-5"
             >
               <div className="flex items-center gap-3 md:col-span-5">
                 <span className="font-mono text-xs font-semibold text-[var(--alert)]">

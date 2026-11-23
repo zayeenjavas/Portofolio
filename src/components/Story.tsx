@@ -16,12 +16,12 @@ export function Story() {
           indexLabel={t("story.index")}
         />
 
-        <div className="px-5 py-10 md:px-8 md:py-12">
+        <div className="p-6 md:px-8 md:py-12">
           <div className="mb-4 font-mono text-[11px] uppercase tracking-[0.14em] text-[var(--mut)]">
             {t("story.greetings")}
           </div>
 
-          <h3 className="text-3xl font-bold leading-[1.1] tracking-[-0.03em] sm:text-4xl md:text-[46px]">
+          <h3 className="text-[30px] font-bold leading-[1.2] tracking-[-0.03em] sm:text-4xl md:text-[46px] md:leading-[1.1]">
             <span className="text-[var(--fg)]">{t("story.headline1")} </span>
             <span className="text-[var(--mut)]">{t("story.headline2")}</span>
           </h3>
