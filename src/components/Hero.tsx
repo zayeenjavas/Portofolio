@@ -7,6 +7,7 @@ import {
   MapPinIcon,
 } from "lucide-react";
 import { HatchedDivider } from "@/components/ui/section-divider";
+import { NaturePixelBanner } from "@/components/ui/nature-pixel-banner";
 import { useTranslation } from "@/providers/language-provider";
 
 const WHATSAPP_URL =
@@ -54,50 +55,41 @@ export function Hero() {
   return (
     <section id="home" className="w-full">
       <div className="rail-container">
-        {/* Top Architectural Banner */}
-        <div className="blueprint-grid relative h-[120px] w-full overflow-hidden border-b border-[var(--line)] bg-[var(--panel)] sm:h-44">
+        {/* Top Pixel-Art Nature Banner */}
+        <div className="relative h-[135px] w-full overflow-hidden border-b border-[var(--line)] bg-[var(--panel)] sm:h-[220px] md:h-[260px]">
+          <NaturePixelBanner />
+
+          {/* Subtle Atmospheric Vignette */}
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-[radial-gradient(60%_100%_at_50%_0%,color-mix(in_srgb,var(--alert)_14%,transparent),transparent)]"
+            className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[var(--bg)]/55 via-transparent to-black/20"
           />
-          <svg
-            aria-hidden="true"
-            viewBox="0 0 880 180"
-            className="absolute inset-0 h-full w-full opacity-35"
-            fill="none"
-          >
-            <circle
-              cx="440"
-              cy="90"
-              r="140"
-              stroke="var(--line)"
-              strokeDasharray="4 4"
-            />
-            <circle cx="440" cy="90" r="78" stroke="var(--line)" />
-            <line x1="0" y1="90" x2="880" y2="90" stroke="var(--line)" />
-            <line x1="440" y1="0" x2="440" y2="180" stroke="var(--line)" />
-            <rect
-              x="436"
-              y="86"
-              width="8"
-              height="8"
-              fill="var(--alert)"
-            />
-          </svg>
 
-          <div className="absolute top-3 left-3 flex items-center gap-2 border border-[var(--line)] bg-[var(--bg)]/85 px-2 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--fg)] backdrop-blur-sm sm:text-[11px]">
+          <div className="absolute top-3 left-3 z-10 flex items-center gap-2 border border-[var(--line)] bg-[var(--bg)]/85 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--fg)] backdrop-blur-sm sm:top-4 sm:left-4 sm:text-[11px]">
             <span className="inline-block size-2 bg-[var(--alert)]" />
             <span>{t("hero.bannerBadge")}</span>
           </div>
 
-          <div className="absolute right-3 bottom-3 border border-[var(--line)] bg-[var(--bg)]/85 px-2 py-1 font-mono text-[10px] tracking-wider text-[var(--mut)] backdrop-blur-sm sm:text-[11px]">
+          <div className="absolute right-3 bottom-3 z-10 border border-[var(--line)] bg-[var(--bg)]/85 px-2.5 py-1 font-mono text-[10px] tracking-wider text-[var(--mut)] backdrop-blur-sm sm:right-4 sm:bottom-4 sm:text-[11px]">
             {t("hero.coords")}
           </div>
         </div>
 
         {/* Profile Identity Row (Horizontal even on 390px mobile) */}
-        <div className="relative flex items-center justify-between gap-4 border-b border-[var(--line)] bg-[var(--panel)] p-5 sm:gap-6 sm:p-6 md:px-8">
-          <div className="flex min-w-0 flex-1 items-center gap-5 sm:gap-6">
+        <div className="relative flex items-center justify-between gap-4 overflow-hidden border-b border-[var(--line)] bg-[var(--panel)] p-5 sm:gap-6 sm:p-6 md:px-8">
+          {/* Mountain & Pine Silhouette Watermark */}
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 600 180"
+            preserveAspectRatio="xMaxYMax slice"
+            className="pointer-events-none absolute inset-0 h-full w-full text-[var(--fg)] opacity-[0.09]"
+            fill="currentColor"
+          >
+            <path d="M160 180 L255 68 L315 128 L390 36 L470 118 L525 74 L600 162 L600 180 Z" />
+            <path d="M475 180 L488 125 L501 180 Z M508 180 L524 108 L540 180 Z M548 180 L560 132 L572 180 Z M435 180 L446 138 L457 180 Z" />
+          </svg>
+
+          <div className="relative z-10 flex min-w-0 flex-1 items-center gap-5 sm:gap-6">
             <div className="size-[104px] shrink-0 overflow-hidden border border-[var(--line)] bg-[var(--bg)] sm:size-28">
               <img
                 src="/images/profile-hero.jpg"
@@ -122,14 +114,6 @@ export function Hero() {
                 {roles[roleIndex]}
               </p>
             </div>
-          </div>
-
-          {/* Subtle technical monogram watermark */}
-          <div
-            aria-hidden="true"
-            className="hidden select-none font-mono text-5xl font-bold tracking-tighter text-[var(--line)]/50 sm:block"
-          >
-            &lt;DEV/&gt;
           </div>
         </div>
 

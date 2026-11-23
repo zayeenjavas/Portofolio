@@ -146,3 +146,31 @@ body::after {
 .animate-eq-2 { animation: eq-bar 0.7s ease-in-out 0.2s infinite; }
 .animate-eq-3 { animation: eq-bar 1.1s ease-in-out 0.4s infinite; }
 .animate-eq-4 { animation: eq-bar 0.8s ease-in-out 0.1s infinite; }
+
+@keyframes banner-kenburns {
+  0% { transform: scale(1) translate3d(0, 0, 0); }
+  100% { transform: scale(1.05) translate3d(-1%, -1%, 0); }
+}
+
+@keyframes mist-drift {
+  0% { transform: translateX(-6%); opacity: 0.35; }
+  50% { opacity: 0.55; }
+  100% { transform: translateX(6%); opacity: 0.35; }
+}
+
+@keyframes firefly-float {
+  0%, 100% { transform: translateY(0px) scale(0.9); opacity: 0.25; }
+  50% { transform: translateY(-10px) scale(1.2); opacity: 0.95; }
+}
+
+.animate-banner-kenburns {
+  animation: banner-kenburns 22s ease-in-out infinite alternate;
+}
+
+.animate-mist-drift {
+  animation: mist-drift 18s ease-in-out infinite alternate;
+}
+
+.animate-firefly {
+  animation: firefly-float 5.5s ease-in-out infinite;
+}
