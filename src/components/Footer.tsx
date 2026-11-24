@@ -87,7 +87,7 @@ export function Footer() {
               {t("footer.social")}
             </div>
             <a
-              href="https://github.com/ZayeenJavas313"
+              href="https://github.com/zayeenjavas"
               target="_blank"
               rel="noreferrer"
               className="flex items-center justify-between px-4 py-2.5 text-sm text-[var(--mut)] transition-colors hover:bg-[var(--panel)] hover:text-[var(--fg)] sm:px-5 sm:py-3"
