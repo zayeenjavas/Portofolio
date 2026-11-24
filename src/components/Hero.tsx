@@ -196,7 +196,7 @@ export function Hero() {
 
           <div className="grid h-10 grid-cols-3 divide-x divide-[var(--line)] border-t border-[var(--line)]">
             <a
-              href="https://github.com/ZayeenJavas313"
+              href="https://github.com/zayeenjavas"
               target="_blank"
               rel="noreferrer"
               className="flex items-center justify-center gap-1.5 px-2 font-mono text-xs uppercase tracking-wider text-[var(--mut)] transition-colors hover:bg-[var(--panel)] hover:text-[var(--fg)] sm:justify-between sm:px-4"
