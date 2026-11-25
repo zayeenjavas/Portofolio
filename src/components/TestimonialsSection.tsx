@@ -28,42 +28,34 @@ export function TestimonialsSection() {
   }
 
   return (
-    <section id="testimonials" className="py-16 sm:py-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="mx-auto max-w-2xl text-center">
-          <span className="inline-flex rounded-full border border-[var(--line)] bg-[var(--panel)] px-3.5 py-1 text-xs font-semibold text-[var(--accent)]">
-            {t("testimonials.badge")}
-          </span>
-          <h2 className="mt-4 text-3xl font-extrabold tracking-[-0.03em] text-[var(--fg)] sm:text-4xl lg:text-5xl">
-            {t("testimonials.title")}
-          </h2>
-          <p className="mt-3 text-base text-[var(--mut)]">
-            {t("testimonials.description")}
-          </p>
-        </div>
+    <section id="testimonials" className="bg-[#f9fafa] py-24 sm:py-32">
+      <div className="mx-auto max-w-[1200px] px-5 sm:px-8">
+        <h2 className="max-w-3xl text-3xl font-medium leading-[1.12] tracking-[-0.03em] text-[#010101] sm:text-[52px]">
+          {t("testimonials.title")}
+        </h2>
 
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
+        <div className="mt-14 grid gap-6 md:grid-cols-3">
           {TESTIMONIALS.map((item) => (
             <div
               key={item.name}
-              className="flex flex-col justify-between rounded-3xl border border-[var(--line)] bg-[var(--panel)] p-7"
+              className="flex flex-col justify-between rounded-[24px] border border-[#e9eaef] bg-white p-7 shadow-sm"
             >
               <div>
-                <div className="mb-4 flex gap-1 text-amber-400">
+                <div className="mb-4 flex gap-0.5 text-[#ff6b35]">
                   {[0, 1, 2, 3, 4].map((s) => (
-                    <StarIcon key={s} className="size-3.5 fill-current" />
+                    <StarIcon key={s} className="size-4 fill-current" />
                   ))}
                 </div>
-                <p className="text-sm leading-relaxed text-[var(--fg)]/90">
+                <p className="text-sm leading-relaxed text-[#010101]/85 sm:text-base">
                   &ldquo;{item.text}&rdquo;
                 </p>
               </div>
 
-              <div className="mt-6 border-t border-[var(--line)] pt-4">
-                <div className="text-sm font-bold text-[var(--fg)]">
+              <div className="mt-6 border-t border-[#e9eaef] pt-4">
+                <div className="text-sm font-semibold text-[#010101]">
                   {item.name}
                 </div>
-                <div className="text-xs text-[var(--mut)]">{item.role}</div>
+                <div className="text-xs text-[#52525b]">{item.role}</div>
               </div>
             </div>
           ))}

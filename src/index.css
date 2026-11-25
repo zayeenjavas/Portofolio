@@ -1,54 +1,31 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark *));
-
 :root {
   --bg: #fafafa;
-  --surface: #f4f4f5;
+  --gray-bg: #f3f4f6;
+  --surface: #f9fafa;
   --panel: #ffffff;
-  --fg: #09090b;
+  --ink: #010101;
+  --ink-soft: rgba(0, 0, 0, 0.72);
   --mut: #52525b;
-  --line: rgba(9, 9, 11, 0.09);
-  --accent: #2563eb;
-  --accent-soft: rgba(37, 99, 235, 0.1);
-  --ok: #16a34a;
-}
-
-.dark {
-  --bg: #050505;
-  --surface: #0d0d10;
-  --panel: #141418;
-  --fg: #f5f5f7;
-  --mut: #9ca3af;
-  --line: rgba(255, 255, 255, 0.09);
-  --accent: #3b82f6;
-  --accent-soft: rgba(59, 130, 246, 0.14);
-  --ok: #22c55e;
+  --line: #e9eaef;
+  --dark-bg: #010101;
+  --dark-panel: #111113;
+  --dark-line: rgba(255, 255, 255, 0.12);
 }
 
 @theme {
   --color-background: var(--bg);
-  --color-foreground: var(--fg);
+  --color-foreground: var(--ink);
   --color-card: var(--panel);
-  --color-card-foreground: var(--fg);
-  --color-popover: var(--panel);
-  --color-popover-foreground: var(--fg);
-  --color-primary: var(--accent);
-  --color-primary-foreground: #ffffff;
-  --color-secondary: var(--surface);
-  --color-secondary-foreground: var(--fg);
-  --color-muted: var(--surface);
+  --color-card-foreground: var(--ink);
+  --color-muted: var(--gray-bg);
   --color-muted-foreground: var(--mut);
-  --color-accent: var(--accent-soft);
-  --color-accent-foreground: var(--fg);
-  --color-destructive: #ef4444;
-  --color-destructive-foreground: #fafafa;
   --color-border: var(--line);
-  --color-input: var(--line);
-  --color-ring: var(--accent);
-  --radius: 1rem;
+  --radius: 9999px;
 
-  --font-sans: "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-serif: "Instrument Serif", Georgia, serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 }
 
@@ -62,7 +39,16 @@ html {
 
 body {
   background-color: var(--bg);
-  color: var(--fg);
+  color: var(--ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+}
+
+/* Signature Orbix Studio directional multi-layer drop shadow */
+.orbix-shadow {
+  box-shadow:
+    -1.1px 1.2px 0.1px rgba(0, 0, 0, 0.015),
+    -4px 4.5px 1.2px rgba(0, 0, 0, 0.025),
+    -12px 13px 4px rgba(0, 0, 0, 0.045),
+    -28px 32px 11px rgba(0, 0, 0, 0.05);
 }

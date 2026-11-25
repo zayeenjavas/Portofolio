@@ -1,160 +1,61 @@
-import { useEffect, useState } from "react";
-import { createPortal } from "react-dom";
-import { ArrowUpRightIcon, MenuIcon, XIcon } from "lucide-react";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { LanguageToggle } from "@/components/ui/language-toggle";
-import { useScroll } from "@/hooks/use-scroll";
 import { useTranslation } from "@/providers/language-provider";
-import { cn } from "@/lib/utils";
-
-const NAV_KEYS = [
-  { key: "work", href: "#work" },
-  { key: "services", href: "#services" },
-  { key: "process", href: "#process" },
-  { key: "pricing", href: "#pricing" },
-  { key: "about", href: "#about" },
-] as const;
 
 const WHATSAPP_URL =
   "https://wa.me/6287841549562?text=Halo%20Ahmad%2C%20saya%20ingin%20diskusi%20project.";
 
-export function Header() {
-  const [open, setOpen] = useState(false);
-  const scrolled = useScroll(12);
-  const { t } = useTranslation();
-
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
-
+export function OrbixMark({ className = "size-7" }: { className?: string }) {
   return (
-    <header className="sticky top-0 z-40 w-full px-4 pt-3 sm:px-6">
-      <div
-        className={cn(
-          "mx-auto flex h-14 max-w-6xl items-center justify-between rounded-2xl border px-4 transition-all duration-200 sm:px-5",
-          scrolled
-            ? "border-[var(--line)] bg-[var(--panel)]/85 shadow-lg shadow-black/15 backdrop-blur-xl"
-            : "border-transparent bg-transparent"
-        )}
-      >
-        <a href="#home" className="flex items-center gap-2.5">
-          <span className="grid size-8 place-content-center rounded-lg bg-[var(--accent)] text-xs font-extrabold tracking-tight text-white">
-            AN
-          </span>
-          <span className="text-sm font-bold tracking-tight text-[var(--fg)]">
-            Ahmad Na&apos;im
-          </span>
-        </a>
-
-        <nav className="hidden items-center gap-6 lg:flex">
-          {NAV_KEYS.map((link) => (
-            <a
-              key={link.key}
-              href={link.href}
-              className="text-xs font-medium text-[var(--mut)] transition-colors hover:text-[var(--fg)]"
-            >
-              {t(`nav.${link.key}`)}
-            </a>
-          ))}
-        </nav>
-
-        <div className="hidden items-center gap-2.5 lg:flex">
-          <LanguageToggle />
-          <ThemeToggle />
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-full bg-[var(--fg)] px-4 py-2 text-xs font-semibold text-[var(--bg)] transition-opacity hover:opacity-90"
-          >
-            <span>{t("nav.letsTalk")}</span>
-            <ArrowUpRightIcon className="size-3.5" />
-          </a>
-        </div>
-
-        <div className="flex items-center gap-2 lg:hidden">
-          <LanguageToggle />
-          <ThemeToggle />
-          <button
-            type="button"
-            onClick={() => setOpen(true)}
-            aria-label="Open menu"
-            className="flex size-8 cursor-pointer items-center justify-center rounded-full border border-[var(--line)] bg-[var(--surface)] text-[var(--fg)]"
-          >
-            <MenuIcon className="size-4" />
-          </button>
-        </div>
-      </div>
-
-      <MobileDrawer open={open} onClose={() => setOpen(false)}>
-        <div className="flex items-center justify-between border-b border-[var(--line)] px-5 py-4">
-          <span className="text-sm font-bold text-[var(--fg)]">
-            Ahmad Na&apos;im
-          </span>
-          <button
-            type="button"
-            onClick={() => setOpen(false)}
-            aria-label="Close menu"
-            className="flex size-8 cursor-pointer items-center justify-center rounded-full border border-[var(--line)] text-[var(--mut)] hover:text-[var(--fg)]"
-          >
-            <XIcon className="size-4" />
-          </button>
-        </div>
-
-        <div className="flex flex-1 flex-col gap-1 p-4">
-          {NAV_KEYS.map((link) => (
-            <a
-              key={link.key}
-              href={link.href}
-              onClick={() => setOpen(false)}
-              className="rounded-xl px-4 py-3 text-sm font-medium text-[var(--fg)] transition-colors hover:bg-[var(--surface)]"
-            >
-              {t(`nav.${link.key}`)}
-            </a>
-          ))}
-        </div>
-
-        <div className="border-t border-[var(--line)] p-4">
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noreferrer"
-            onClick={() => setOpen(false)}
-            className="flex w-full items-center justify-center gap-2 rounded-full bg-[var(--fg)] px-5 py-3 text-xs font-semibold text-[var(--bg)]"
-          >
-            <span>{t("nav.letsTalk")}</span>
-            <ArrowUpRightIcon className="size-3.5" />
-          </a>
-        </div>
-      </MobileDrawer>
-    </header>
+    <svg viewBox="0 0 32 32" fill="none" className={className} aria-hidden="true">
+      <path
+        d="M16 4C11.5 4 7.8 6.8 6.4 10.8"
+        stroke="currentColor"
+        strokeWidth="2.8"
+        strokeLinecap="round"
+      />
+      <path
+        d="M25.6 10.8C24.2 6.8 20.5 4 16 4"
+        stroke="currentColor"
+        strokeWidth="2.8"
+        strokeLinecap="round"
+        opacity="0.45"
+      />
+      <path
+        d="M7 22C9.2 25.6 12.4 27.5 16 27.5C19.6 27.5 22.8 25.6 25 22"
+        stroke="currentColor"
+        strokeWidth="2.8"
+        strokeLinecap="round"
+      />
+      <circle cx="16" cy="16" r="3.2" fill="currentColor" />
+    </svg>
   );
 }
 
-function MobileDrawer({
-  open,
-  onClose,
-  children,
-}: {
-  open: boolean;
-  onClose: () => void;
-  children: React.ReactNode;
-}) {
-  if (!open || typeof window === "undefined") return null;
-  return createPortal(
-    <div className="fixed inset-0 z-50 lg:hidden" role="dialog" aria-modal="true">
-      <div
-        aria-hidden="true"
-        onClick={onClose}
-        className="fixed inset-0 bg-black/65 backdrop-blur-xs"
-      />
-      <div className="fixed inset-y-0 right-0 flex w-3/4 max-w-xs flex-col border-l border-[var(--line)] bg-[var(--panel)] shadow-2xl">
-        {children}
+export function Header() {
+  const { t } = useTranslation();
+
+  return (
+    <header className="absolute top-0 right-0 left-0 z-30 w-full">
+      <div className="mx-auto flex h-20 max-w-[1320px] items-center justify-between px-5 sm:px-8">
+        <a href="#home" className="flex items-center gap-2.5 text-[#010101]">
+          <OrbixMark className="size-7 shrink-0" />
+          <span className="hidden text-lg font-semibold tracking-tight sm:inline">
+            Ahmad <span className="font-serif text-[21px] italic font-normal">Na&apos;im</span>
+          </span>
+        </a>
+
+        <div className="flex items-center gap-2.5">
+          <LanguageToggle />
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="orbix-shadow inline-flex h-10 items-center justify-center rounded-full bg-[#010101] px-5 text-sm font-medium text-white transition-transform hover:-translate-y-0.5"
+          >
+            {t("nav.contactUs")}
+          </a>
+        </div>
       </div>
-    </div>,
-    document.body
+    </header>
   );
 }

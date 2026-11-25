@@ -1,10 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  ArrowDownIcon,
-  ArrowUpRightIcon,
-  BadgeCheckIcon,
-  MapPinIcon,
-} from "lucide-react";
+import { ArrowUpRightIcon, GlobeIcon, StarIcon } from "lucide-react";
 import { LogoCloud } from "@/components/ui/logo-cloud";
 import { useTranslation } from "@/providers/language-provider";
 
@@ -24,169 +19,167 @@ const TECH_LOGOS = [
 
 export function Hero() {
   const { t } = useTranslation();
-  const [now, setNow] = useState(() => new Date());
+  const badges = [t("hero.badge1"), t("hero.badge2"), t("hero.badge3")];
+  const [badgeIdx, setBadgeIdx] = useState(0);
 
   useEffect(() => {
-    const timer = setInterval(() => setNow(new Date()), 1000);
+    const timer = setInterval(() => {
+      setBadgeIdx((prev) => (prev + 1) % badges.length);
+    }, 3200);
     return () => clearInterval(timer);
-  }, []);
-
-  const timeString = new Intl.DateTimeFormat("en-GB", {
-    timeZone: "Asia/Jakarta",
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-  }).format(now);
+  }, [badges.length]);
 
   return (
-    <section id="home" className="relative overflow-hidden pt-10 pb-14 sm:pt-16 sm:pb-20">
-      {/* Subtle Ambient Radial Glow */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute -top-24 left-1/2 -z-10 h-[420px] w-[780px] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse_at_center,var(--accent-soft),transparent_70%)] blur-2xl"
-      />
-
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
-        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
-          {/* Left: Agency Positioning */}
-          <div className="space-y-6 lg:col-span-7">
-            <div className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-[var(--panel)] px-3.5 py-1.5 text-xs font-medium text-[var(--fg)]">
-              <span className="inline-block size-2 rounded-full bg-[var(--ok)]" />
-              <span>{t("hero.badge")}</span>
-            </div>
-
-            <h1 className="text-4xl font-extrabold leading-[1.08] tracking-[-0.03em] text-[var(--fg)] sm:text-5xl lg:text-[56px]">
-              {t("hero.title")}
-            </h1>
-
-            <p className="max-w-xl text-base leading-relaxed text-[var(--mut)] sm:text-lg">
-              {t("hero.subtitle")}
-            </p>
-
-            <div className="flex flex-wrap items-center gap-3 pt-1">
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-[var(--accent)] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[var(--accent)]/25 transition-opacity hover:opacity-90"
-              >
-                <span>{t("hero.ctaPrimary")}</span>
-                <ArrowUpRightIcon className="size-4" />
-              </a>
-              <a
-                href="#work"
-                className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-[var(--panel)] px-6 py-3 text-sm font-semibold text-[var(--fg)] transition-colors hover:bg-[var(--surface)]"
-              >
-                <span>{t("hero.ctaSecondary")}</span>
-                <ArrowDownIcon className="size-4" />
-              </a>
-            </div>
-          </div>
-
-          {/* Right: Founder / Product Studio Card */}
-          <div className="lg:col-span-5">
-            <div className="overflow-hidden rounded-3xl border border-[var(--line)] bg-[var(--panel)] p-5 shadow-2xl shadow-black/20 sm:p-6">
-              <div className="flex items-center gap-4">
-                <div className="size-16 shrink-0 overflow-hidden rounded-2xl border border-[var(--line)] bg-[var(--surface)] sm:size-20">
-                  <img
-                    src="/images/profile-hero.jpg"
-                    alt="Ahmad Na'im"
-                    className="h-full w-full object-cover"
-                    style={{ objectPosition: "center 20%" }}
-                    loading="eager"
-                  />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-1.5">
-                    <h2 className="truncate text-lg font-bold tracking-tight text-[var(--fg)]">
-                      Ahmad Na&apos;im
-                    </h2>
-                    <BadgeCheckIcon className="size-4 shrink-0 text-[var(--accent)]" />
-                  </div>
-                  <p className="text-xs font-medium text-[var(--mut)] sm:text-sm">
-                    {t("hero.role")}
-                  </p>
-                  <div className="mt-1.5 flex items-center gap-1.5 text-xs text-[var(--mut)]">
-                    <MapPinIcon className="size-3.5 text-[var(--accent)]" />
-                    <span>{t("hero.location")}</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-5 grid grid-cols-2 gap-3 rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-4">
-                <div>
-                  <div className="text-[11px] font-medium uppercase tracking-wider text-[var(--mut)]">
-                    Local Time
-                  </div>
-                  <div className="mt-0.5 font-mono text-xl font-bold text-[var(--fg)] tabular-nums">
-                    {timeString} <span className="text-xs font-normal text-[var(--mut)]">WIB</span>
-                  </div>
-                </div>
-                <div className="flex flex-col justify-between text-right">
-                  <div className="text-[11px] font-medium uppercase tracking-wider text-[var(--mut)]">
-                    Direct Email
-                  </div>
-                  <a
-                    href="mailto:ahmdnaim3@gmail.com"
-                    className="truncate text-xs font-semibold text-[var(--fg)] underline-offset-4 hover:underline"
-                  >
-                    ahmdnaim3@gmail.com
-                  </a>
-                </div>
-              </div>
-
-              <div className="mt-4 grid grid-cols-3 gap-2">
-                <a
-                  href="https://github.com/zayeenjavas"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center justify-center gap-1 rounded-xl border border-[var(--line)] bg-[var(--surface)] py-2 text-xs font-medium text-[var(--mut)] transition-colors hover:text-[var(--fg)]"
-                >
-                  GitHub <ArrowUpRightIcon className="size-3" />
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/ahmadznaim/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center justify-center gap-1 rounded-xl border border-[var(--line)] bg-[var(--surface)] py-2 text-xs font-medium text-[var(--mut)] transition-colors hover:text-[var(--fg)]"
-                >
-                  LinkedIn <ArrowUpRightIcon className="size-3" />
-                </a>
-                <a
-                  href="https://www.instagram.com/ahmaadznaeem/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center justify-center gap-1 rounded-xl border border-[var(--line)] bg-[var(--surface)] py-2 text-xs font-medium text-[var(--mut)] transition-colors hover:text-[var(--fg)]"
-                >
-                  Instagram <ArrowUpRightIcon className="size-3" />
-                </a>
-              </div>
-            </div>
-          </div>
+    <>
+      {/* Full-bleed Sky & Meadow Hero matching Orbix Studio */}
+      <section
+        id="home"
+        className="relative flex min-h-[760px] flex-col items-center justify-center overflow-hidden bg-[#f3f4f6] px-5 pt-28 pb-24 text-center sm:min-h-[860px]"
+      >
+        {/* Atmospheric Sky + Sunlit Green Meadow Backdrop */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+          {/* Sky gradient */}
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,#d8e6f3_0%,#edf2f7_45%,#f5f7f8_68%,#a4be6b_80%,#688a35_90%,#f3f4f6_100%)]" />
+          {/* Soft white clouds */}
+          <div className="absolute -top-12 left-[10%] h-64 w-96 rounded-full bg-white/70 blur-3xl" />
+          <div className="absolute top-12 right-[8%] h-72 w-[420px] rounded-full bg-white/65 blur-3xl" />
+          {/* Layered meadow hills at bottom */}
+          <svg
+            viewBox="0 0 1440 320"
+            preserveAspectRatio="none"
+            className="absolute right-0 bottom-0 left-0 h-[240px] w-full sm:h-[290px]"
+          >
+            <defs>
+              <linearGradient id="meadow1" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#86a947" stopOpacity="0.85" />
+                <stop offset="100%" stopColor="#f3f4f6" stopOpacity="1" />
+              </linearGradient>
+              <linearGradient id="meadow2" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="#65882f" stopOpacity="0.9" />
+                <stop offset="100%" stopColor="#f3f4f6" stopOpacity="1" />
+              </linearGradient>
+            </defs>
+            <path
+              d="M0 110 C280 55 560 155 880 95 C1150 45 1310 95 1440 80 L1440 320 L0 320 Z"
+              fill="url(#meadow1)"
+            />
+            <path
+              d="M0 160 C340 120 640 200 980 145 C1210 110 1350 145 1440 135 L1440 320 L0 320 Z"
+              fill="url(#meadow2)"
+            />
+          </svg>
+          {/* Bottom fade into #F3F4F6 / #FAFAFA */}
+          <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#fafafa] via-[#fafafa]/80 to-transparent" />
         </div>
 
-        {/* Metrics / Trust Strip */}
-        <div className="mt-14 grid grid-cols-2 gap-4 rounded-2xl border border-[var(--line)] bg-[var(--panel)] p-6 sm:grid-cols-4 sm:gap-6">
-          {[1, 2, 3, 4].map((i) => (
-            <div key={i} className="space-y-1">
-              <div className="text-2xl font-extrabold tracking-tight text-[var(--fg)] sm:text-3xl">
-                {t(`hero.stat${i}Val`)}
-              </div>
-              <div className="text-xs font-medium text-[var(--mut)] sm:text-sm">
-                {t(`hero.stat${i}Label`)}
-              </div>
-            </div>
-          ))}
-        </div>
+        {/* Centered Hero Content */}
+        <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center">
+          {/* Rotating Frosted Pill Badge */}
+          <div className="inline-flex items-center gap-2 rounded-full border border-[#e9eaef] bg-white/85 px-4 py-1.5 text-xs font-medium text-[#010101] shadow-sm backdrop-blur-md">
+            <GlobeIcon className="size-3.5 text-[#52525b]" />
+            <span>{badges[badgeIdx]}</span>
+          </div>
 
-        {/* Tech Marquee */}
-        <div className="mt-12 space-y-3 text-center">
-          <p className="text-xs font-medium uppercase tracking-[0.14em] text-[var(--mut)]">
-            {t("hero.marqueeLabel")}
+          <h1 className="mt-6 text-4xl font-medium leading-[1.08] tracking-[-0.035em] text-[#010101] sm:text-5xl md:text-[64px]">
+            {t("hero.title")}
+          </h1>
+
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-[#010101]/70 sm:text-lg">
+            {t("hero.subtitle")}
+          </p>
+
+          {/* Rating / Trust Signal */}
+          <div className="mt-6 flex items-center gap-2.5 text-sm font-medium text-[#010101]">
+            <span className="flex size-6 items-center justify-center rounded-full bg-[#0f766e] text-xs font-bold text-white">
+              A
+            </span>
+            <span className="font-semibold">{t("hero.ratingText")}</span>
+            <div className="flex items-center gap-0.5 text-[#ff6b35]">
+              {[0, 1, 2, 3, 4].map((i) => (
+                <StarIcon key={i} className="size-4 fill-current" />
+              ))}
+            </div>
+            <span className="text-xs text-[#52525b]">{t("hero.ratingSub")}</span>
+          </div>
+
+          {/* Dual Pill CTAs */}
+          <div className="mt-8 flex w-full flex-col items-center justify-center gap-3 sm:w-auto sm:flex-row">
+            <a
+              href="#pricing"
+              className="orbix-shadow inline-flex h-12 w-full items-center justify-center rounded-full bg-[#010101] px-7 text-sm font-medium text-white transition-transform hover:-translate-y-0.5 sm:w-auto"
+            >
+              {t("hero.ctaPrimary")}
+            </a>
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="orbix-shadow inline-flex h-12 w-full items-center justify-center rounded-full border border-[#e9eaef] bg-white px-7 text-sm font-medium text-[#010101] transition-transform hover:-translate-y-0.5 sm:w-auto"
+            >
+              {t("hero.ctaSecondary")}
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Logo Marquee Section (#FAFAFA) */}
+      <section className="bg-[#fafafa] py-12">
+        <div className="mx-auto max-w-5xl px-5 text-center">
+          <p className="mb-6 text-sm font-medium text-[#52525b]">
+            {t("hero.marqueeTitle")}
           </p>
           <LogoCloud logos={TECH_LOGOS} />
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* Value Track Section (#F9FAFA) */}
+      <section className="bg-[#f9fafa] py-20 sm:py-28">
+        <div className="mx-auto max-w-4xl px-5 text-center">
+          <h2 className="text-3xl font-medium leading-[1.12] tracking-[-0.03em] text-[#010101] sm:text-5xl">
+            {t("value.title")}
+          </h2>
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-[#52525b] sm:text-lg">
+            {t("value.subtitle")}
+          </p>
+
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <a
+              href="#pricing"
+              className="orbix-shadow inline-flex h-12 items-center justify-center rounded-full bg-[#010101] px-7 text-sm font-medium text-white transition-transform hover:-translate-y-0.5"
+            >
+              {t("value.cta")}
+            </a>
+          </div>
+
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4 text-xs font-medium text-[#52525b]">
+            <span>{t("value.socialsLabel")}:</span>
+            <a
+              href="https://github.com/zayeenjavas"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1 text-[#010101] hover:underline"
+            >
+              GitHub <ArrowUpRightIcon className="size-3" />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/ahmadznaim/"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1 text-[#010101] hover:underline"
+            >
+              LinkedIn <ArrowUpRightIcon className="size-3" />
+            </a>
+            <a
+              href="https://www.instagram.com/ahmaadznaeem/"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-1 text-[#010101] hover:underline"
+            >
+              Instagram <ArrowUpRightIcon className="size-3" />
+            </a>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

@@ -1,4 +1,4 @@
-import { ArrowUpRightIcon, CheckIcon } from "lucide-react";
+import { ArrowUpRightIcon } from "lucide-react";
 import { useTranslation } from "@/providers/language-provider";
 import { cn } from "@/lib/utils";
 
@@ -9,64 +9,57 @@ export function Pricing() {
   const { t } = useTranslation();
 
   return (
-    <section id="pricing" className="py-16 sm:py-24">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+    <section id="pricing" className="bg-white py-24 sm:py-32">
+      <div className="mx-auto max-w-[1200px] px-5 sm:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="inline-flex rounded-full border border-[var(--line)] bg-[var(--panel)] px-3.5 py-1 text-xs font-semibold text-[var(--accent)]">
-            {t("pricing.badge")}
-          </span>
-          <h2 className="mt-4 text-3xl font-extrabold tracking-[-0.03em] text-[var(--fg)] sm:text-4xl lg:text-5xl">
+          <h2 className="text-3xl font-medium leading-[1.12] tracking-[-0.03em] text-[#010101] sm:text-[52px]">
             {t("pricing.title")}
           </h2>
-          <p className="mt-3 text-base text-[var(--mut)]">
+          <p className="mt-4 text-base text-[#52525b] sm:text-lg">
             {t("pricing.subtitle")}
           </p>
         </div>
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-3">
+        <div className="mt-14 grid gap-6 lg:grid-cols-3">
           {[1, 2, 3].map((i) => {
             const isPopular = i === 2;
             return (
               <div
                 key={i}
                 className={cn(
-                  "flex flex-col justify-between rounded-3xl border bg-[var(--panel)] p-7 transition-colors",
+                  "flex flex-col justify-between rounded-[28px] border p-8 transition-shadow",
                   isPopular
-                    ? "border-[var(--accent)] shadow-xl shadow-[var(--accent)]/10"
-                    : "border-[var(--line)]"
+                    ? "border-[#010101] bg-[#010101] text-white shadow-2xl"
+                    : "border-[#e9eaef] bg-[#f9fafa] text-[#010101]"
                 )}
               >
                 <div>
                   <span
                     className={cn(
-                      "inline-flex rounded-full px-3 py-1 text-[11px] font-bold tracking-wider",
+                      "inline-flex rounded-full px-3 py-1 text-[11px] font-medium tracking-wider",
                       isPopular
-                        ? "bg-[var(--accent)] text-white"
-                        : "border border-[var(--line)] bg-[var(--surface)] text-[var(--mut)]"
+                        ? "bg-white text-[#010101]"
+                        : "border border-[#e9eaef] bg-white text-[#52525b]"
                     )}
                   >
                     {t(`pricing.card${i}Tag`)}
                   </span>
 
-                  <h3 className="mt-5 text-xl font-bold tracking-tight text-[var(--fg)]">
+                  <h3 className="mt-5 text-2xl font-medium tracking-tight">
                     {t(`pricing.card${i}Title`)}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-[var(--mut)]">
+                  <p
+                    className={cn(
+                      "mt-2 text-sm leading-relaxed",
+                      isPopular ? "text-white/75" : "text-[#52525b]"
+                    )}
+                  >
                     {t(`pricing.card${i}Subtitle`)}
                   </p>
 
-                  <div className="mt-6 text-2xl font-extrabold tracking-tight text-[var(--fg)] sm:text-3xl">
+                  <div className="mt-8 text-3xl font-medium tracking-tight">
                     {t(`pricing.card${i}Price`)}
                   </div>
-
-                  <ul className="mt-6 space-y-3 border-t border-[var(--line)] pt-6 text-sm text-[var(--fg)]/90">
-                    {[1, 2, 3].map((f) => (
-                      <li key={f} className="flex items-start gap-2.5">
-                        <CheckIcon className="mt-0.5 size-4 shrink-0 text-[var(--accent)]" />
-                        <span>{t(`pricing.card${i}Feat${f}`)}</span>
-                      </li>
-                    ))}
-                  </ul>
                 </div>
 
                 <a
@@ -74,21 +67,21 @@ export function Pricing() {
                   target="_blank"
                   rel="noreferrer"
                   className={cn(
-                    "mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3 text-xs font-semibold transition-opacity hover:opacity-90",
+                    "mt-8 inline-flex h-11 w-full items-center justify-center gap-2 rounded-full text-sm font-medium transition-opacity hover:opacity-90",
                     isPopular
-                      ? "bg-[var(--accent)] text-white"
-                      : "bg-[var(--fg)] text-[var(--bg)]"
+                      ? "bg-white text-[#010101]"
+                      : "bg-[#010101] text-white"
                   )}
                 >
                   <span>{t("pricing.cta")}</span>
-                  <ArrowUpRightIcon className="size-3.5" />
+                  <ArrowUpRightIcon className="size-4" />
                 </a>
               </div>
             );
           })}
         </div>
 
-        <p className="mt-6 text-center text-xs text-[var(--mut)]">
+        <p className="mt-6 text-center text-xs text-[#52525b]">
           {t("pricing.disclaimer")}
         </p>
       </div>
