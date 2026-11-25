@@ -1,3 +1,4 @@
+import { motion } from "motion/react";
 import { ArrowUpRightIcon } from "lucide-react";
 import { useTranslation } from "@/providers/language-provider";
 
@@ -19,16 +20,24 @@ export function Services() {
   return (
     <section id="services" className="bg-white py-20 sm:py-28">
       <div className="mx-auto max-w-[1200px] divide-y divide-[#e9eaef] px-5 sm:px-8">
-        {SERVICE_LIST.map((service) => (
-          <div
+        {SERVICE_LIST.map((service, idx) => (
+          <motion.div
             key={service.num}
-            className="grid gap-6 py-12 sm:py-16 lg:grid-cols-12 lg:items-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.25 }}
+            transition={{
+              duration: 0.5,
+              delay: idx * 0.05,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            className="group grid gap-6 py-12 sm:py-16 lg:grid-cols-12 lg:items-center"
           >
-            <div className="font-mono text-sm font-medium text-[#52525b] lg:col-span-2">
+            <div className="font-mono text-sm font-medium text-[#52525b] transition-colors group-hover:text-[#010101] lg:col-span-2">
               {service.num}
             </div>
             <div className="lg:col-span-6">
-              <h2 className="text-2xl font-medium leading-[1.15] tracking-[-0.02em] text-[#010101] sm:text-4xl">
+              <h2 className="text-2xl font-medium leading-[1.15] tracking-[-0.02em] text-[#010101] transition-transform duration-300 group-hover:translate-x-1 sm:text-4xl">
                 {t(service.titleKey)}
               </h2>
               <p className="mt-3 max-w-xl text-base leading-relaxed text-[#52525b]">
@@ -46,7 +55,7 @@ export function Services() {
                 <ArrowUpRightIcon className="size-4" />
               </a>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>

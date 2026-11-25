@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { ArrowUpRightIcon, GlobeIcon, StarIcon } from "lucide-react";
 import { LogoCloud } from "@/components/ui/logo-cloud";
 import { useTranslation } from "@/providers/language-provider";
@@ -38,12 +39,17 @@ export function Hero() {
       >
         {/* Atmospheric Sky + Sunlit Green Meadow Backdrop */}
         <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-          {/* Sky gradient */}
           <div className="absolute inset-0 bg-[linear-gradient(180deg,#d8e6f3_0%,#edf2f7_45%,#f5f7f8_68%,#a4be6b_80%,#688a35_90%,#f3f4f6_100%)]" />
-          {/* Soft white clouds */}
-          <div className="absolute -top-12 left-[10%] h-64 w-96 rounded-full bg-white/70 blur-3xl" />
-          <div className="absolute top-12 right-[8%] h-72 w-[420px] rounded-full bg-white/65 blur-3xl" />
-          {/* Layered meadow hills at bottom */}
+          <motion.div
+            animate={{ x: [0, 18, 0] }}
+            transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute -top-12 left-[10%] h-64 w-96 rounded-full bg-white/70 blur-3xl"
+          />
+          <motion.div
+            animate={{ x: [0, -20, 0] }}
+            transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-12 right-[8%] h-72 w-[420px] rounded-full bg-white/65 blur-3xl"
+          />
           <svg
             viewBox="0 0 1440 320"
             preserveAspectRatio="none"
@@ -68,16 +74,30 @@ export function Hero() {
               fill="url(#meadow2)"
             />
           </svg>
-          {/* Bottom fade into #F3F4F6 / #FAFAFA */}
           <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#fafafa] via-[#fafafa]/80 to-transparent" />
         </div>
 
-        {/* Centered Hero Content */}
-        <div className="relative z-10 mx-auto flex max-w-4xl flex-col items-center">
+        {/* Centered Hero Content with staggered entrance */}
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="relative z-10 mx-auto flex max-w-4xl flex-col items-center"
+        >
           {/* Rotating Frosted Pill Badge */}
-          <div className="inline-flex items-center gap-2 rounded-full border border-[#e9eaef] bg-white/85 px-4 py-1.5 text-xs font-medium text-[#010101] shadow-sm backdrop-blur-md">
-            <GlobeIcon className="size-3.5 text-[#52525b]" />
-            <span>{badges[badgeIdx]}</span>
+          <div className="inline-flex h-8 items-center gap-2 overflow-hidden rounded-full border border-[#e9eaef] bg-white/85 px-4 text-xs font-medium text-[#010101] shadow-sm backdrop-blur-md">
+            <GlobeIcon className="size-3.5 shrink-0 text-[#52525b]" />
+            <AnimatePresence mode="wait">
+              <motion.span
+                key={badgeIdx}
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.25 }}
+              >
+                {badges[badgeIdx]}
+              </motion.span>
+            </AnimatePresence>
           </div>
 
           <h1 className="mt-6 text-4xl font-medium leading-[1.08] tracking-[-0.035em] text-[#010101] sm:text-5xl md:text-[64px]">
@@ -119,7 +139,7 @@ export function Hero() {
               {t("hero.ctaSecondary")}
             </a>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Logo Marquee Section (#FAFAFA) */}
@@ -134,7 +154,13 @@ export function Hero() {
 
       {/* Value Track Section (#F9FAFA) */}
       <section className="bg-[#f9fafa] py-20 sm:py-28">
-        <div className="mx-auto max-w-4xl px-5 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+          className="mx-auto max-w-4xl px-5 text-center"
+        >
           <h2 className="text-3xl font-medium leading-[1.12] tracking-[-0.03em] text-[#010101] sm:text-5xl">
             {t("value.title")}
           </h2>
@@ -178,7 +204,7 @@ export function Hero() {
               Instagram <ArrowUpRightIcon className="size-3" />
             </a>
           </div>
-        </div>
+        </motion.div>
       </section>
     </>
   );

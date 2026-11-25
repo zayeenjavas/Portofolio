@@ -1,3 +1,4 @@
+import { motion } from "motion/react";
 import { StarIcon } from "lucide-react";
 import { EmptyTestimonial } from "@/components/EmptyTestimonial";
 import { useTranslation } from "@/providers/language-provider";
@@ -30,15 +31,29 @@ export function TestimonialsSection() {
   return (
     <section id="testimonials" className="bg-[#f9fafa] py-24 sm:py-32">
       <div className="mx-auto max-w-[1200px] px-5 sm:px-8">
-        <h2 className="max-w-3xl text-3xl font-medium leading-[1.12] tracking-[-0.03em] text-[#010101] sm:text-[52px]">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-3xl text-3xl font-medium leading-[1.12] tracking-[-0.03em] text-[#010101] sm:text-[52px]"
+        >
           {t("testimonials.title")}
-        </h2>
+        </motion.h2>
 
         <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {TESTIMONIALS.map((item) => (
-            <div
+          {TESTIMONIALS.map((item, idx) => (
+            <motion.div
               key={item.name}
-              className="flex flex-col justify-between rounded-[24px] border border-[#e9eaef] bg-white p-7 shadow-sm"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{
+                duration: 0.55,
+                delay: idx * 0.08,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className="flex flex-col justify-between rounded-[24px] border border-[#e9eaef] bg-white p-7 shadow-sm transition-transform duration-300 hover:-translate-y-1"
             >
               <div>
                 <div className="mb-4 flex gap-0.5 text-[#ff6b35]">
@@ -57,7 +72,7 @@ export function TestimonialsSection() {
                 </div>
                 <div className="text-xs text-[#52525b]">{item.role}</div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

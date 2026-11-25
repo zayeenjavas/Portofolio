@@ -1,3 +1,4 @@
+import { motion } from "motion/react";
 import { ArrowUpRightIcon } from "lucide-react";
 import { useTranslation } from "@/providers/language-provider";
 import { cn } from "@/lib/utils";
@@ -11,23 +12,37 @@ export function Pricing() {
   return (
     <section id="pricing" className="bg-white py-24 sm:py-32">
       <div className="mx-auto max-w-[1200px] px-5 sm:px-8">
-        <div className="mx-auto max-w-2xl text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          className="mx-auto max-w-2xl text-center"
+        >
           <h2 className="text-3xl font-medium leading-[1.12] tracking-[-0.03em] text-[#010101] sm:text-[52px]">
             {t("pricing.title")}
           </h2>
           <p className="mt-4 text-base text-[#52525b] sm:text-lg">
             {t("pricing.subtitle")}
           </p>
-        </div>
+        </motion.div>
 
         <div className="mt-14 grid gap-6 lg:grid-cols-3">
-          {[1, 2, 3].map((i) => {
+          {[1, 2, 3].map((i, idx) => {
             const isPopular = i === 2;
             return (
-              <div
+              <motion.div
                 key={i}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{
+                  duration: 0.55,
+                  delay: idx * 0.08,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
                 className={cn(
-                  "flex flex-col justify-between rounded-[28px] border p-8 transition-shadow",
+                  "flex flex-col justify-between rounded-[28px] border p-8 transition-transform duration-300 hover:-translate-y-1",
                   isPopular
                     ? "border-[#010101] bg-[#010101] text-white shadow-2xl"
                     : "border-[#e9eaef] bg-[#f9fafa] text-[#010101]"
@@ -76,7 +91,7 @@ export function Pricing() {
                   <span>{t("pricing.cta")}</span>
                   <ArrowUpRightIcon className="size-4" />
                 </a>
-              </div>
+              </motion.div>
             );
           })}
         </div>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { ArrowUpRightIcon, PlusIcon } from "lucide-react";
 import { useTranslation } from "@/providers/language-provider";
 import { cn } from "@/lib/utils";
@@ -76,11 +77,21 @@ export function FaqSection() {
                       <PlusIcon className="size-4" />
                     </span>
                   </button>
-                  {isOpen && (
-                    <p className="mt-3 pr-10 text-base leading-relaxed text-[#52525b]">
-                      {item.a}
-                    </p>
-                  )}
+                  <AnimatePresence initial={false}>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.25, ease: "easeOut" }}
+                        className="overflow-hidden"
+                      >
+                        <p className="mt-3 pr-10 text-base leading-relaxed text-[#52525b]">
+                          {item.a}
+                        </p>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
               );
             })}
