@@ -1,4 +1,4 @@
-import { ArrowUpIcon, ArrowUpRightIcon } from "lucide-react";
+import { ArrowUpRightIcon, MailIcon, MessageCircleIcon } from "lucide-react";
 import { useTranslation } from "@/providers/language-provider";
 
 const WHATSAPP_URL =
@@ -7,173 +7,180 @@ const WHATSAPP_URL =
 export function Footer() {
   const { t } = useTranslation();
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   return (
-    <footer id="contact" className="w-full bg-[var(--bg)]">
-      {/* 4-Column (2x2 on Mobile) Link Grid + Copyright inside Rail */}
-      <div className="rail-container border-t border-[var(--line)]">
-        <div className="grid grid-cols-2 sm:grid-cols-4 sm:divide-x sm:divide-[var(--line)]">
-          {/* Column 1: NAVIGATE */}
-          <div className="divide-y divide-[var(--line)] max-sm:border-r max-sm:border-[var(--line)]">
-            <div className="px-4 py-3 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--fg)] sm:px-5 sm:py-3.5">
-              {t("footer.navigate")}
-            </div>
-            <a
-              href="#home"
-              className="block px-4 py-2.5 text-sm text-[var(--mut)] transition-colors hover:bg-[var(--panel)] hover:text-[var(--fg)] sm:px-5 sm:py-3"
-            >
-              Home
-            </a>
-            <a
-              href="#work"
-              className="block px-4 py-2.5 text-sm text-[var(--mut)] transition-colors hover:bg-[var(--panel)] hover:text-[var(--fg)] sm:px-5 sm:py-3"
-            >
-              {t("nav.work")}
-            </a>
-            <a
-              href="#services"
-              className="block px-4 py-2.5 text-sm text-[var(--mut)] transition-colors hover:bg-[var(--panel)] hover:text-[var(--fg)] sm:px-5 sm:py-3"
-            >
-              {t("nav.services")}
-            </a>
-            <a
-              href="#pricing"
-              className="block px-4 py-2.5 text-sm text-[var(--mut)] transition-colors hover:bg-[var(--panel)] hover:text-[var(--fg)] sm:px-5 sm:py-3"
-            >
-              {t("nav.pricing")}
-            </a>
-          </div>
+    <footer id="contact" className="border-t border-[var(--line)] bg-[var(--bg)] pt-16 pb-10">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        {/* Agency Pre-Footer CTA Card */}
+        <div className="relative overflow-hidden rounded-3xl border border-[var(--line)] bg-[var(--panel)] p-8 text-center sm:p-14">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -top-24 left-1/2 h-64 w-96 -translate-x-1/2 rounded-full bg-[radial-gradient(circle,var(--accent-soft),transparent_70%)] blur-2xl"
+          />
+          <span className="relative inline-flex rounded-full border border-[var(--line)] bg-[var(--surface)] px-3.5 py-1 text-xs font-semibold text-[var(--accent)]">
+            {t("footer.ctaBadge")}
+          </span>
+          <h2 className="relative mx-auto mt-4 max-w-2xl text-3xl font-extrabold tracking-[-0.03em] text-[var(--fg)] sm:text-4xl lg:text-5xl">
+            {t("footer.ctaTitle")}
+          </h2>
+          <p className="relative mx-auto mt-3 max-w-xl text-base text-[var(--mut)]">
+            {t("footer.ctaSubtitle")}
+          </p>
 
-          {/* Column 2: PROJECTS */}
-          <div className="divide-y divide-[var(--line)]">
-            <div className="px-4 py-3 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--fg)] sm:px-5 sm:py-3.5">
-              {t("footer.projects")}
-            </div>
-            <a
-              href="https://sabana-adventure.vercel.app/"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center justify-between px-4 py-2.5 text-sm text-[var(--mut)] transition-colors hover:bg-[var(--panel)] hover:text-[var(--fg)] sm:px-5 sm:py-3"
-            >
-              <span className="truncate">Sabana Adventure</span>
-              <ArrowUpRightIcon className="size-3.5 shrink-0" />
-            </a>
-            <a
-              href="https://scholarify.id/"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center justify-between px-4 py-2.5 text-sm text-[var(--mut)] transition-colors hover:bg-[var(--panel)] hover:text-[var(--fg)] sm:px-5 sm:py-3"
-            >
-              <span className="truncate">Scholarify</span>
-              <ArrowUpRightIcon className="size-3.5 shrink-0" />
-            </a>
-            <a
-              href="https://aira-dry-cleaning.vercel.app/"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center justify-between px-4 py-2.5 text-sm text-[var(--mut)] transition-colors hover:bg-[var(--panel)] hover:text-[var(--fg)] sm:px-5 sm:py-3"
-            >
-              <span className="truncate">Aira Dry Cleaning</span>
-              <ArrowUpRightIcon className="size-3.5 shrink-0" />
-            </a>
-          </div>
-
-          {/* Column 3: SOCIAL */}
-          <div className="divide-y divide-[var(--line)] max-sm:border-t max-sm:border-r max-sm:border-[var(--line)]">
-            <div className="px-4 py-3 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--fg)] sm:px-5 sm:py-3.5">
-              {t("footer.social")}
-            </div>
-            <a
-              href="https://github.com/zayeenjavas"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center justify-between px-4 py-2.5 text-sm text-[var(--mut)] transition-colors hover:bg-[var(--panel)] hover:text-[var(--fg)] sm:px-5 sm:py-3"
-            >
-              <span>GitHub</span>
-              <ArrowUpRightIcon className="size-3.5 shrink-0" />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/ahmadznaim/"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center justify-between px-4 py-2.5 text-sm text-[var(--mut)] transition-colors hover:bg-[var(--panel)] hover:text-[var(--fg)] sm:px-5 sm:py-3"
-            >
-              <span>LinkedIn</span>
-              <ArrowUpRightIcon className="size-3.5 shrink-0" />
-            </a>
-            <a
-              href="https://www.instagram.com/ahmaadznaeem/"
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center justify-between px-4 py-2.5 text-sm text-[var(--mut)] transition-colors hover:bg-[var(--panel)] hover:text-[var(--fg)] sm:px-5 sm:py-3"
-            >
-              <span>Instagram</span>
-              <ArrowUpRightIcon className="size-3.5 shrink-0" />
-            </a>
-          </div>
-
-          {/* Column 4: CONTACT */}
-          <div className="divide-y divide-[var(--line)] max-sm:border-t max-sm:border-[var(--line)]">
-            <div className="px-4 py-3 font-mono text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--fg)] sm:px-5 sm:py-3.5">
-              {t("footer.contact")}
-            </div>
-            <a
-              href="mailto:ahmdnaim3@gmail.com"
-              className="flex items-center justify-between px-4 py-2.5 text-sm text-[var(--mut)] transition-colors hover:bg-[var(--panel)] hover:text-[var(--fg)] sm:px-5 sm:py-3"
-            >
-              <span>{t("footer.sendEmail")}</span>
-              <ArrowUpRightIcon className="size-3.5 shrink-0" />
-            </a>
+          <div className="relative mt-8 flex flex-wrap items-center justify-center gap-3">
             <a
               href={WHATSAPP_URL}
               target="_blank"
               rel="noreferrer"
-              className="flex items-center justify-between px-4 py-2.5 text-sm text-[var(--mut)] transition-colors hover:bg-[var(--panel)] hover:text-[var(--fg)] sm:px-5 sm:py-3"
+              className="inline-flex items-center gap-2 rounded-full bg-[var(--accent)] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[var(--accent)]/25 transition-opacity hover:opacity-90"
             >
+              <MessageCircleIcon className="size-4" />
               <span>{t("footer.whatsapp")}</span>
-              <ArrowUpRightIcon className="size-3.5 shrink-0" />
+              <ArrowUpRightIcon className="size-4" />
+            </a>
+            <a
+              href="mailto:ahmdnaim3@gmail.com"
+              className="inline-flex items-center gap-2 rounded-full border border-[var(--line)] bg-[var(--surface)] px-6 py-3 text-sm font-semibold text-[var(--fg)] transition-colors hover:bg-[var(--panel)]"
+            >
+              <MailIcon className="size-4" />
+              <span>{t("footer.sendEmail")}</span>
             </a>
           </div>
         </div>
 
-        {/* Copyright Row */}
-        <div className="flex min-h-10 items-center justify-between gap-4 border-t border-[var(--line)] px-4 py-2.5 font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--mut)] sm:px-5 sm:text-[11px]">
+        {/* 4-Column Footer Links */}
+        <div className="mt-14 grid grid-cols-2 gap-8 sm:grid-cols-4">
+          <div>
+            <div className="text-xs font-bold uppercase tracking-wider text-[var(--fg)]">
+              {t("footer.navigate")}
+            </div>
+            <ul className="mt-4 space-y-2.5 text-sm text-[var(--mut)]">
+              <li>
+                <a href="#home" className="hover:text-[var(--fg)]">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="#work" className="hover:text-[var(--fg)]">
+                  {t("nav.work")}
+                </a>
+              </li>
+              <li>
+                <a href="#services" className="hover:text-[var(--fg)]">
+                  {t("nav.services")}
+                </a>
+              </li>
+              <li>
+                <a href="#pricing" className="hover:text-[var(--fg)]">
+                  {t("nav.pricing")}
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <div className="text-xs font-bold uppercase tracking-wider text-[var(--fg)]">
+              {t("footer.projects")}
+            </div>
+            <ul className="mt-4 space-y-2.5 text-sm text-[var(--mut)]">
+              <li>
+                <a
+                  href="https://sabana-adventure.vercel.app/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1 hover:text-[var(--fg)]"
+                >
+                  Sabana Adventure <ArrowUpRightIcon className="size-3" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://scholarify.id/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1 hover:text-[var(--fg)]"
+                >
+                  Scholarify <ArrowUpRightIcon className="size-3" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://aira-dry-cleaning.vercel.app/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1 hover:text-[var(--fg)]"
+                >
+                  Aira Dry Cleaning <ArrowUpRightIcon className="size-3" />
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <div className="text-xs font-bold uppercase tracking-wider text-[var(--fg)]">
+              {t("footer.social")}
+            </div>
+            <ul className="mt-4 space-y-2.5 text-sm text-[var(--mut)]">
+              <li>
+                <a
+                  href="https://github.com/zayeenjavas"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1 hover:text-[var(--fg)]"
+                >
+                  GitHub <ArrowUpRightIcon className="size-3" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/ahmadznaim/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1 hover:text-[var(--fg)]"
+                >
+                  LinkedIn <ArrowUpRightIcon className="size-3" />
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.instagram.com/ahmaadznaeem/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1 hover:text-[var(--fg)]"
+                >
+                  Instagram <ArrowUpRightIcon className="size-3" />
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <div className="text-xs font-bold uppercase tracking-wider text-[var(--fg)]">
+              {t("footer.contact")}
+            </div>
+            <ul className="mt-4 space-y-2.5 text-sm text-[var(--mut)]">
+              <li>
+                <a href="mailto:ahmdnaim3@gmail.com" className="hover:text-[var(--fg)]">
+                  ahmdnaim3@gmail.com
+                </a>
+              </li>
+              <li>
+                <a
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-[var(--fg)]"
+                >
+                  +62 878-4154-9562
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom Copyright */}
+        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-[var(--line)] pt-6 text-xs text-[var(--mut)] sm:flex-row">
           <span>{t("footer.copyright")}</span>
-          <span className="flex shrink-0 items-center gap-1.5 text-right">
-            <span className="inline-block size-2 bg-[var(--alert)]" />
-            {t("footer.locationTag")}
-          </span>
-        </div>
-      </div>
-
-      {/* Hatched Band with 40x40px Square Scroll-to-Top Button */}
-      <div className="hatched-band relative">
-        <div className="relative mx-auto h-full max-w-[880px]">
-          <button
-            type="button"
-            onClick={scrollToTop}
-            aria-label="Scroll to top"
-            className="absolute -top-[1px] right-0 flex size-10 cursor-pointer items-center justify-center bg-[var(--fg)] text-[var(--bg)] transition-opacity hover:opacity-85"
-          >
-            <ArrowUpIcon className="size-4" />
-          </button>
-        </div>
-      </div>
-
-      {/* Giant Outlined Wordmark ("ahmadnaim") */}
-      <div className="w-full overflow-hidden border-b border-[var(--line)] pt-5 sm:pt-8">
-        <div
-          aria-hidden="true"
-          className="mx-auto w-full max-w-[880px] select-none px-4 text-center font-sans text-[16.5vw] font-bold leading-[0.78] tracking-[-0.04em] text-transparent sm:px-0 sm:text-[138px]"
-          style={{
-            WebkitTextStroke:
-              "1.5px color-mix(in srgb, var(--fg) 42%, transparent)",
-          }}
-        >
-          ahmadnaim
+          <span>{t("footer.locationTag")}</span>
         </div>
       </div>
     </footer>

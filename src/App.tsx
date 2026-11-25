@@ -3,11 +3,10 @@ import { Hero } from "@/components/Hero";
 import { Story } from "@/components/Story";
 import { Portfolio } from "@/components/Portfolio";
 import { Services } from "@/components/Services";
-import { TechStack } from "@/components/TechStack";
+import { ProcessSection } from "@/components/ProcessSection";
 import { Pricing } from "@/components/Pricing";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { Footer } from "@/components/Footer";
-import { HatchedDivider } from "@/components/ui/section-divider";
 
 function App() {
   return (
@@ -15,20 +14,13 @@ function App() {
       <Header />
       <main className="grow">
         <Hero />
-        <HatchedDivider />
-        <Story />
-        <HatchedDivider />
         <Portfolio />
-        <HatchedDivider />
         <Services />
-        <HatchedDivider />
-        <TechStack />
-        <HatchedDivider />
+        <ProcessSection />
+        <Story />
         <Pricing />
-        <HatchedDivider />
         <TestimonialsSection />
       </main>
-      <HatchedDivider />
       <Footer />
     </div>
   );
